@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://jorlken1.github.io</id>
     <title>jorlken Notes</title>
-    <updated>2022-05-12T08:05:41.464Z</updated>
+    <updated>2022-05-12T08:11:22.607Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://jorlken1.github.io"/>
     <link rel="self" href="https://jorlken1.github.io/atom.xml"/>
@@ -16,7 +16,7 @@
         <link href="https://jorlken1.github.io/post/di-yi-pian-wen-zhang/">
         </link>
         <updated>2022-05-12T01:58:53.000Z</updated>
-        <content type="html"><![CDATA[<p>hello gridea</p>
+        <content type="html"><![CDATA[<p>hello gridea ，成功完成个性化配置，开始编写。</p>
 ]]></content>
     </entry>
 </feed>
