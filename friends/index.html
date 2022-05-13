@@ -9,7 +9,7 @@
 <meta name="description" content="勤学如春起之苗，不见其长，日有精进">
 <meta name="theme-color" content="#000">
 <title>jorlken Notes</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1652406168926">
+<link rel="shortcut icon" href="/favicon.ico?v=1652406702428">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -1089,16 +1089,16 @@
         <a class="result-title" style="opacity: 0;" href="https://jorlken1.github.io/post/Vue-Easy-Player/"" data-c="
           &lt;p&gt;由于之前用过vedio-player接入直播流遇到了不好用，支持的格式少，性能不稳定等问题，后发现easy-player可以完美兼容及用户体验良好，故将项目的直播流接入Easy-player，推荐大家使用它。&lt;/p&gt;
 &lt;p&gt;接下来分享关于easy-player的操作以及使用的方法。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;第一步：打开终端，用npm下载Easy-player&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;##第一步：打开终端，用npm下载Easy-player&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;npm install easy-player&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;如遇到下载失败的问题可以去网上搜寻错误关键字，或使用 &lt;strong&gt;npm淘宝镜像&lt;/strong&gt;，&lt;strong&gt;cnpm&lt;/strong&gt;，&lt;strong&gt;yarn&lt;/strong&gt;改善下载问题。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;第二步：移动文件&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;##第二步：移动文件**&lt;/p&gt;
 &lt;p&gt;在项目的依赖包 &lt;code&gt;node_modules&lt;/code&gt; 里，找到 &lt;code&gt;easy-player&lt;/code&gt; 文件夹&lt;/p&gt;
 &lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://jorlken1.github.io/post-images/1652404470655.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
 &lt;p&gt;在 &lt;code&gt;easy-player&lt;/code&gt;文件夹 下的 &lt;code&gt;dist&lt;/code&gt; 文件夹 下的 &lt;code&gt;component&lt;/code&gt;文件夹 中复制这三个文件&lt;/p&gt;
 &lt;figure data-type=&#34;image&#34; tabindex=&#34;2&#34;&gt;&lt;img src=&#34;https://jorlken1.github.io/post-images/1652404673520.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
 &lt;p&gt;粘贴到与 &lt;code&gt;node_modules&lt;/code&gt;文件夹 同级的 &lt;code&gt;public&lt;/code&gt; 文件夹 中即可使用&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;第三步：引入文件&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;##第三步：引入文件**&lt;/p&gt;
 &lt;p&gt;进入 &lt;code&gt;public&lt;/code&gt; 文件夹 中的 &lt;code&gt;index.html&lt;/code&gt; 文件 中，用 &lt;em&gt;script&lt;/em&gt; 标签引入 &lt;em&gt;easy-player&lt;/em&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;html lang=&amp;quot;zh-cmn-Hans&amp;quot;&amp;gt;
   &amp;lt;head&amp;gt;
@@ -1110,7 +1110,7 @@
   &amp;lt;/body&amp;gt;
 &amp;lt;/html&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;第四步：去.vue文件中使用&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;##第四步：去.vue文件中使用**&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;template&amp;gt;
     ...
       &amp;lt;EasyPlayer
@@ -1139,8 +1139,8 @@ export default {
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;至此，easy-player就可以使用啦&lt;/p&gt;
 &lt;p&gt;ps:为了保证public文件夹的干净整洁，可以将需要的三个文件放在一个独立的文件夹下方便管理。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;补充可配置项&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&#34;属性property&#34;&gt;属性(Property)&lt;/h2&gt;
+&lt;p&gt;##补充可配置项&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;属性(Property)&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;video-url&lt;/code&gt; 视频流地址 String default &#39;&#39;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;video-title&lt;/code&gt; 视频右上角显示的标题 String default &#39;&#39;&lt;/li&gt;
@@ -1157,12 +1157,12 @@ export default {
 &lt;li&gt;&lt;code&gt;timeout&lt;/code&gt; m3u8 加载超时(秒) Number default 20&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;show-custom-button&lt;/code&gt; 是否在工具栏显示自定义按钮(极速/流畅, 拉伸/标准), Boolean default true&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;方法medthod&#34;&gt;方法(Medthod)&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;方法(Medthod)&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;getCurrentTime&lt;/code&gt; 获取当前播放时间进度, 同步返回播放时间进度数据&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;snap&lt;/code&gt; 外部 API 方式获取快照, 快照获取成功后, 触发 snapOutside Event&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;事件event&#34;&gt;事件(Event)&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;事件(Event)&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;message&lt;/code&gt; 触发通知消息, 参数: { type: &#39;&#39;, message: &#39;&#39;}&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;ended&lt;/code&gt; 播放结束, 参数: 无&lt;/li&gt;

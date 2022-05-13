@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://jorlken1.github.io</id>
     <title>jorlken Notes</title>
-    <updated>2022-05-13T01:42:52.522Z</updated>
+    <updated>2022-05-13T01:51:49.785Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://jorlken1.github.io"/>
     <link rel="self" href="https://jorlken1.github.io/atom.xml"/>
@@ -18,16 +18,16 @@
         <updated>2022-05-13T00:49:29.000Z</updated>
         <content type="html"><![CDATA[<p>由于之前用过vedio-player接入直播流遇到了不好用，支持的格式少，性能不稳定等问题，后发现easy-player可以完美兼容及用户体验良好，故将项目的直播流接入Easy-player，推荐大家使用它。</p>
 <p>接下来分享关于easy-player的操作以及使用的方法。</p>
-<p><strong>第一步：打开终端，用npm下载Easy-player</strong></p>
+<p>##第一步：打开终端，用npm下载Easy-player</p>
 <p><code>npm install easy-player</code></p>
 <p>如遇到下载失败的问题可以去网上搜寻错误关键字，或使用 <strong>npm淘宝镜像</strong>，<strong>cnpm</strong>，<strong>yarn</strong>改善下载问题。</p>
-<p><strong>第二步：移动文件</strong></p>
+<p>##第二步：移动文件**</p>
 <p>在项目的依赖包 <code>node_modules</code> 里，找到 <code>easy-player</code> 文件夹</p>
 <figure data-type="image" tabindex="1"><img src="https://jorlken1.github.io/post-images/1652404470655.png" alt="" loading="lazy"></figure>
 <p>在 <code>easy-player</code>文件夹 下的 <code>dist</code> 文件夹 下的 <code>component</code>文件夹 中复制这三个文件</p>
 <figure data-type="image" tabindex="2"><img src="https://jorlken1.github.io/post-images/1652404673520.png" alt="" loading="lazy"></figure>
 <p>粘贴到与 <code>node_modules</code>文件夹 同级的 <code>public</code> 文件夹 中即可使用</p>
-<p><strong>第三步：引入文件</strong></p>
+<p>##第三步：引入文件**</p>
 <p>进入 <code>public</code> 文件夹 中的 <code>index.html</code> 文件 中，用 <em>script</em> 标签引入 <em>easy-player</em></p>
 <pre><code>&lt;html lang=&quot;zh-cmn-Hans&quot;&gt;
   &lt;head&gt;
@@ -39,7 +39,7 @@
   &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-<p><strong>第四步：去.vue文件中使用</strong></p>
+<p>##第四步：去.vue文件中使用**</p>
 <pre><code>&lt;template&gt;
     ...
       &lt;EasyPlayer
@@ -68,8 +68,8 @@ export default {
 </code></pre>
 <p>至此，easy-player就可以使用啦</p>
 <p>ps:为了保证public文件夹的干净整洁，可以将需要的三个文件放在一个独立的文件夹下方便管理。</p>
-<p><strong>补充可配置项</strong></p>
-<h2 id="属性property">属性(Property)</h2>
+<p>##补充可配置项</p>
+<p><strong>属性(Property)</strong></p>
 <ul>
 <li><code>video-url</code> 视频流地址 String default ''</li>
 <li><code>video-title</code> 视频右上角显示的标题 String default ''</li>
@@ -86,12 +86,12 @@ export default {
 <li><code>timeout</code> m3u8 加载超时(秒) Number default 20</li>
 <li><code>show-custom-button</code> 是否在工具栏显示自定义按钮(极速/流畅, 拉伸/标准), Boolean default true</li>
 </ul>
-<h2 id="方法medthod">方法(Medthod)</h2>
+<p><strong>方法(Medthod)</strong></p>
 <ul>
 <li><code>getCurrentTime</code> 获取当前播放时间进度, 同步返回播放时间进度数据</li>
 <li><code>snap</code> 外部 API 方式获取快照, 快照获取成功后, 触发 snapOutside Event</li>
 </ul>
-<h2 id="事件event">事件(Event)</h2>
+<p><strong>事件(Event)</strong></p>
 <ul>
 <li><code>message</code> 触发通知消息, 参数: { type: '', message: ''}</li>
 <li><code>ended</code> 播放结束, 参数: 无</li>
