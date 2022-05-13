@@ -2171,7 +2171,7 @@ body {
     }
     .mist .site-title i {
       background: #FFFFFFfe;
-    }.subtitle{color: #ddd;}.markdownIt-TOC a{color:#999}.markdownIt-TOC a:hover{color:#ccc}.box-scale > #landlord {
+    }.subtitle{color: #ddd;}a{color:#999}.markdownIt-TOC a:hover{color:#ccc}.box-scale > #landlord {
       transform: scale(0.8);
     }.box-shadow-wrapper {
       box-shadow: none !important;
