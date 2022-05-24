@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://jorlken1.github.io</id>
     <title>jorlken Notes</title>
-    <updated>2022-05-24T00:47:10.053Z</updated>
+    <updated>2022-05-24T01:03:28.946Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://jorlken1.github.io"/>
     <link rel="self" href="https://jorlken1.github.io/atom.xml"/>
@@ -10,6 +10,21 @@
     <logo>https://jorlken1.github.io/images/avatar.png</logo>
     <icon>https://jorlken1.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, jorlken Notes</rights>
+    <entry>
+        <title type="html"><![CDATA[1.4 运行时和编译时]]></title>
+        <id>https://jorlken1.github.io/post/14-yun-xing-shi-he-bian-yi-shi/</id>
+        <link href="https://jorlken1.github.io/post/14-yun-xing-shi-he-bian-yi-shi/">
+        </link>
+        <updated>2022-05-24T00:53:51.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="运行时框架">运行时框架</h1>
+<p>用户提供描述dom的数据对象，使用框架后转化为命令。</p>
+<h1 id="编译时框架">编译时框架</h1>
+<p>用户提供模版字符串，经编译转化为命令。</p>
+<h1 id="运行时-编译时-框架-vue">运行时 + 编译时 框架 （vue）</h1>
+<p>用户提供模版字符串，经编译为描述dom的数据对象，再转化为命令。</p>
+<p>设计目的：使用编译时保持可读性的同时，通过运行时尽可能去优化。（不输纯编译时）</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[1.3 虚拟DOM]]></title>
         <id>https://jorlken1.github.io/post/13-xu-ni-dom/</id>

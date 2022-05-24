@@ -8,7 +8,7 @@
 <meta name="keywords" content="jorlken">
 <meta name="description" content="勤学如春起之苗，不见其长，日有精进">
 <meta name="theme-color" content="#000">
-<title>1.1 视图层框架的分类 | jorlken Notes</title>
+<title>1.4 运行时和编译时 | jorlken Notes</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1653354205223">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
@@ -41,7 +41,7 @@
 
 
 
-  <meta name="description" content="1.1 视图层框架的分类" />
+  <meta name="description" content="1.4 运行时和编译时" />
   <meta name="keywords" content="Vue.js 的设计与实现总结,前端" />
 </head>
 
@@ -167,7 +167,8 @@
       <div class="sidebar-body gemini" id="sidebar_body">
         
           
-            
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
@@ -224,6 +225,193 @@
   </div>
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper  auto"
+    id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li><a href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E6%A1%86%E6%9E%B6">运行时框架</a></li>
+<li><a href="#%E7%BC%96%E8%AF%91%E6%97%B6%E6%A1%86%E6%9E%B6">编译时框架</a></li>
+<li><a href="#%E8%BF%90%E8%A1%8C%E6%97%B6-%E7%BC%96%E8%AF%91%E6%97%B6-%E6%A1%86%E6%9E%B6-vue">运行时 + 编译时 框架 （vue）</a></li>
+</ul>
+
+  </div>
+</div>
+
+<script>
+
+  let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1;
+  let active = 'active-show', activeClass = 'active-current';
+  let tocWrapper = document.querySelector('#toc_wrapper');
+  let tocContent = tocWrapper.children[0];
+  let autoNumber = tocWrapper && tocWrapper.classList.contains('auto-number');
+
+  function addTocNumber(elem, deep) {
+    if (!elem) {
+      return;
+    }
+    let prop = elem.__proto__;
+
+    if (prop === HTMLUListElement.prototype) {
+      for (let i = 0; i < elem.children.length; i++) {
+        addTocNumber(elem.children[i], deep + (i + 1) + '.');
+      }
+    } else if (prop === HTMLLIElement.prototype) {
+      // 保存li元素
+      if (elem.children[0] && elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
+        lList.push(elem);
+      }
+      for (let i = 0; i < elem.children.length; i++) {
+        let cur = elem.children[i];
+        if (cur.__proto__ === HTMLAnchorElement.prototype) {
+          if (autoNumber) {
+            cur.text = deep + ' ' + cur.text;
+          }
+        } else if (cur.__proto__ === HTMLUListElement.prototype) {
+          addTocNumber(cur, deep);
+        }
+      }
+    }
+  }
+
+  function removeParentActiveClass() {
+    let parents = tocContent.querySelectorAll('.' + active)
+    parents.forEach(function (elem) {
+      elem.classList.remove(active);
+    });
+  }
+
+  function addActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.add(activeClass);
+    }
+  }
+
+  function removeActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.remove(activeClass);
+    }
+  }
+
+  function addActiveLiElemment(elem, parent) {
+    if (!elem || elem === parent) {
+      return;
+    } else {
+      if (elem.__proto__ === HTMLLIElement.prototype) {
+        elem.classList.add(active);
+      }
+      addActiveLiElemment(elem.parentElement, parent);
+    }
+  }
+
+  function showToc() {
+    if (tocWrapper) {
+      postBody = document.querySelector('#post_body');
+      for (let i = 0; i < postBody.children.length; i++) {
+        if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+          hList.push(postBody.children[i]);
+        }
+      }
+      if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+      } else if (tocWrapper.classList.contains('no_compress')) {
+        tocContent.classList.add('expanded');
+      } else {
+        if (hList.length > 10) {
+          active = 'active-hidden'
+          tocContent.classList.add('closed');
+        } else {
+          tocContent.classList.add('expanded');
+        }
+      }
+    }
+  }
+
+  (function () {
+    // 处理不是从#一级标题开始目录
+    if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
+      let con = tocContent.children[0].children[0];
+      tocContent.innerHTML = con.innerHTML;
+    }
+    let markdownItTOC = document.querySelector('.markdownIt-TOC');
+    let innerHeight = window.innerHeight;
+    markdownItTOC.style = `max-height: ${innerHeight - 80 > 0 ? innerHeight - 80 : innerHeight}px`
+    addTocNumber(tocContent, '');
+  })();
+
+  document.addEventListener('scroll', function (e) {
+    if (lList.length <= 0) {
+      return;
+    }
+    let scrollTop = document.scrollingElement.scrollTop + 10;
+    let dir;
+
+    if (lastTop - scrollTop > 0) {
+      dir = 'up';
+    } else {
+      dir = 'down';
+    }
+
+    lastTop = scrollTop;
+    if (scrollTop <= 0) {
+      if (lastIndex >= 0 && lastIndex < hList.length) {
+        lList[lastIndex].classList.remove(activeClass);
+      }
+      return;
+    }
+
+    let current = 0, hasFind = false;
+    for (let i = 0; i < hList.length; i++) {
+      if (hList[i].offsetTop > scrollTop) {
+        current = i;
+        hasFind = true;
+        break;
+      }
+    }
+    if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+      current = hList.length - 1;
+    } else {
+      current--;
+    }
+    if (dir === 'down') {
+      if (current > lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex)
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    } else {
+      if (current < lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex);
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    }
+  });
+
+
+  window.addEventListener('load', function () {
+    showToc();
+    document.querySelector('#sidebar').style = 'display: block;';
+    tocWrapper.classList.add('toc-active');
+    setTimeout(function () {
+      if ("createEvent" in document) {
+        let evt = document.createEvent("HTMLEvents");
+        evt.initEvent("scroll", false, true);
+        document.dispatchEvent(evt);
+      }
+      else {
+        document.fireEvent("scroll");
+      }
+    }, 500)
+  })
+
+</script>
+            </div>
           
         
       </div>
@@ -311,14 +499,14 @@
           <div class="section bg-color post post-page">
             <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://jorlken1.github.io/post/11-shi-tu-ceng-kuang-jia-de-fen-lei/"> 1.1 视图层框架的分类 </a>
+    <a class="post-title-link" href="https://jorlken1.github.io/post/14-yun-xing-shi-he-bian-yi-shi/"> 1.4 运行时和编译时 </a>
   </h1>
   <div class="post-meta">
     
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2022-05-19 15:00:51">2022-05-19</span>
+      <span class="publish-time" data-t="2022-05-24 08:53:51">2022-05-24</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -346,7 +534,7 @@
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
       <span
-        >187<span class="pc-show language" data-lan="words"
+        >119<span class="pc-show language" data-lan="words"
           >字数</span
         ></span
       >
@@ -356,23 +544,13 @@
 </section>
 
             <div class="post-body next-md-body" id="post_body">
-              <ol>
-<li>命令式<br>
-用户通过发布一条条命令，完成特定的功能。命令式的一大特点为<code>关注功能</code>。</li>
-<li>声明式<br>
-用户通过直接阐述所需要生成的标签结果，即可完成特定功能。</li>
-</ol>
-<p>举例：<br>
-<code>我要生成一个有点击事件和文本&quot;hello world&quot;的div标签</code></p>
-<p>命令式框架需要进行以下编码：</p>
-<pre><code>const div = document.querySelect('#app') // 获取页面中id为app的div
-div.innerText =  'hello world' // 设置文本内容
-div.addEventlistener('click',()=&gt;{alert('ok')})// 绑定点击事件   
-</code></pre>
-<p>而声明式框架则仅仅需要进行以下编码：</p>
-<pre><code>&lt;div @click=&quot;()=&gt;{alert('ok')}&quot;&gt;hello world&lt;/div&gt;
-</code></pre>
-<p>Vue的内部实现是<strong>命令式</strong>的，而用户层则是<strong>声明式</strong>的。</p>
+              <h1 id="运行时框架">运行时框架</h1>
+<p>用户提供描述dom的数据对象，使用框架后转化为命令。</p>
+<h1 id="编译时框架">编译时框架</h1>
+<p>用户提供模版字符串，经编译转化为命令。</p>
+<h1 id="运行时-编译时-框架-vue">运行时 + 编译时 框架 （vue）</h1>
+<p>用户提供模版字符串，经编译为描述dom的数据对象，再转化为命令。</p>
+<p>设计目的：使用编译时保持可读性的同时，通过运行时尽可能去优化。（不输纯编译时）</p>
 
             </div>
             
@@ -385,7 +563,7 @@ div.addEventlistener('click',()=&gt;{alert('ok')})// 绑定点击事件
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://jorlken1.github.io/post/11-shi-tu-ceng-kuang-jia-de-fen-lei/" title="1.1 视图层框架的分类">https://jorlken1.github.io/post/11-shi-tu-ceng-kuang-jia-de-fen-lei/</a>
+      <a href="https://jorlken1.github.io/post/14-yun-xing-shi-he-bian-yi-shi/" title="1.4 运行时和编译时">https://jorlken1.github.io/post/14-yun-xing-shi-he-bian-yi-shi/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -402,15 +580,11 @@ div.addEventlistener('click',()=&gt;{alert('ok')})// 绑定点击事件
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="1.2 性能与可维护性的平衡" href="https://jorlken1.github.io/post/12-xing-neng-yu-ke-wei-hu-xing-de-ping-heng/">1.2 性能与可维护性的平衡</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="1.2 性能与可维护性的平衡" href="https://jorlken1.github.io/post/12-xing-neng-yu-ke-wei-hu-xing-de-ping-heng/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="基于Vue的视频播放器（支持视频流、直播流）" href="https://jorlken1.github.io/post/Vue-Easy-Player/">基于Vue的视频播放器（支持视频流、直播流）</a>
-        <a class="nav-mobile-next" title="基于Vue的视频播放器（支持视频流、直播流）" href="https://jorlken1.github.io/post/Vue-Easy-Player/">下一篇</a>
+        <a class="nav-pc-next" title="1.3 虚拟DOM" href="https://jorlken1.github.io/post/13-xu-ni-dom/">1.3 虚拟DOM</a>
+        <a class="nav-mobile-next" title="1.3 虚拟DOM" href="https://jorlken1.github.io/post/13-xu-ni-dom/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
