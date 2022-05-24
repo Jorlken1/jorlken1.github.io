@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://jorlken1.github.io</id>
     <title>jorlken Notes</title>
-    <updated>2022-05-20T00:57:04.620Z</updated>
+    <updated>2022-05-24T00:24:54.788Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://jorlken1.github.io"/>
     <link rel="self" href="https://jorlken1.github.io/atom.xml"/>
@@ -10,6 +10,20 @@
     <logo>https://jorlken1.github.io/images/avatar.png</logo>
     <icon>https://jorlken1.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, jorlken Notes</rights>
+    <entry>
+        <title type="html"><![CDATA[1.2 性能与可维护性的平衡]]></title>
+        <id>https://jorlken1.github.io/post/12-xing-neng-yu-ke-wei-hu-xing-de-ping-heng/</id>
+        <link href="https://jorlken1.github.io/post/12-xing-neng-yu-ke-wei-hu-xing-de-ping-heng/">
+        </link>
+        <updated>2022-05-24T00:09:30.000Z</updated>
+        <content type="html"><![CDATA[<pre><code>命令式代码的性能损耗 = 直接修改的性能损耗
+声明式代码的性能损耗 = 直接修改的性能损耗 + 找出差异修改的性能损耗
+</code></pre>
+<p>声明式代码的<strong>性能损耗</strong> 大于等于 命令式代码的<strong>性能损耗损耗</strong><br>
+但 声明式代码 的<strong>可读性</strong> 大于等于 命令式代码 的<strong>可读性</strong></p>
+<p>设计目的 ： 保持可读性的同时，让性能损失最小化。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[1.1 视图层框架的分类]]></title>
         <id>https://jorlken1.github.io/post/11-shi-tu-ceng-kuang-jia-de-fen-lei/</id>
