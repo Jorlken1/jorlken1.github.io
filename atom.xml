@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://jorlken1.github.io</id>
     <title>jorlken Notes</title>
-    <updated>2022-05-24T01:03:28.946Z</updated>
+    <updated>2022-05-25T03:08:46.750Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://jorlken1.github.io"/>
     <link rel="self" href="https://jorlken1.github.io/atom.xml"/>
@@ -10,6 +10,28 @@
     <logo>https://jorlken1.github.io/images/avatar.png</logo>
     <icon>https://jorlken1.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, jorlken Notes</rights>
+    <entry>
+        <title type="html"><![CDATA[关于领导方法的若干问题]]></title>
+        <id>https://jorlken1.github.io/post/guan-yu-ling-dao-fang-fa-de-ruo-gan-wen-ti/</id>
+        <link href="https://jorlken1.github.io/post/guan-yu-ling-dao-fang-fa-de-ruo-gan-wen-ti/">
+        </link>
+        <updated>2022-05-25T02:55:03.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="两个方法">两个方法</h1>
+<ol>
+<li>一般与个别相结合。</li>
+<li>领导与群众相结合。</li>
+</ol>
+<h1 id="普遍和一般的号召">普遍和一般的号召</h1>
+<p>从下级和别人员或事件获取具体经验，再向一切单位作指导。</p>
+<h1 id="领导骨干和广大群众相结合">领导骨干和广大群众相结合</h1>
+<p>需要培养团结一致，联系群众的经常健全的骨干。</p>
+<h1 id="从群众中来再到群众中去">从群众中来再到群众中去</h1>
+<p>收集群众的意见，经研究化为系统性的意见，再到群众中去宣传解释，考验意见是否正确，循环往复。</p>
+<h1 id="工作任务需要分工且统一">工作任务需要分工且统一</h1>
+<p>让领导和下级领导都负起责任。</p>
+<h1 id="抓住问题的主要矛盾的主要方面具体问题具体分析">抓住问题的主要矛盾的主要方面，具体问题具体分析</h1>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[1.4 运行时和编译时]]></title>
         <id>https://jorlken1.github.io/post/14-yun-xing-shi-he-bian-yi-shi/</id>

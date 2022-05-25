@@ -8,7 +8,7 @@
 <meta name="keywords" content="jorlken">
 <meta name="description" content="勤学如春起之苗，不见其长，日有精进">
 <meta name="theme-color" content="#000">
-<title>1.1 视图层框架的分类 | jorlken Notes</title>
+<title>关于领导方法的若干问题 | jorlken Notes</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1653448119723">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
@@ -41,8 +41,8 @@
 
 
 
-  <meta name="description" content="1.1 视图层框架的分类" />
-  <meta name="keywords" content="Vue.js 的设计与实现总结,前端" />
+  <meta name="description" content="关于领导方法的若干问题" />
+  <meta name="keywords" content="生活" />
 </head>
 
 <body>
@@ -167,7 +167,8 @@
       <div class="sidebar-body gemini" id="sidebar_body">
         
           
-            
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
@@ -224,6 +225,196 @@
   </div>
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper  auto"
+    id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li><a href="#%E4%B8%A4%E4%B8%AA%E6%96%B9%E6%B3%95">两个方法</a></li>
+<li><a href="#%E6%99%AE%E9%81%8D%E5%92%8C%E4%B8%80%E8%88%AC%E7%9A%84%E5%8F%B7%E5%8F%AC">普遍和一般的号召</a></li>
+<li><a href="#%E9%A2%86%E5%AF%BC%E9%AA%A8%E5%B9%B2%E5%92%8C%E5%B9%BF%E5%A4%A7%E7%BE%A4%E4%BC%97%E7%9B%B8%E7%BB%93%E5%90%88">领导骨干和广大群众相结合</a></li>
+<li><a href="#%E4%BB%8E%E7%BE%A4%E4%BC%97%E4%B8%AD%E6%9D%A5%E5%86%8D%E5%88%B0%E7%BE%A4%E4%BC%97%E4%B8%AD%E5%8E%BB">从群众中来再到群众中去</a></li>
+<li><a href="#%E5%B7%A5%E4%BD%9C%E4%BB%BB%E5%8A%A1%E9%9C%80%E8%A6%81%E5%88%86%E5%B7%A5%E4%B8%94%E7%BB%9F%E4%B8%80">工作任务需要分工且统一</a></li>
+<li><a href="#%E6%8A%93%E4%BD%8F%E9%97%AE%E9%A2%98%E7%9A%84%E4%B8%BB%E8%A6%81%E7%9F%9B%E7%9B%BE%E7%9A%84%E4%B8%BB%E8%A6%81%E6%96%B9%E9%9D%A2%E5%85%B7%E4%BD%93%E9%97%AE%E9%A2%98%E5%85%B7%E4%BD%93%E5%88%86%E6%9E%90">抓住问题的主要矛盾的主要方面，具体问题具体分析</a></li>
+</ul>
+
+  </div>
+</div>
+
+<script>
+
+  let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1;
+  let active = 'active-show', activeClass = 'active-current';
+  let tocWrapper = document.querySelector('#toc_wrapper');
+  let tocContent = tocWrapper.children[0];
+  let autoNumber = tocWrapper && tocWrapper.classList.contains('auto-number');
+
+  function addTocNumber(elem, deep) {
+    if (!elem) {
+      return;
+    }
+    let prop = elem.__proto__;
+
+    if (prop === HTMLUListElement.prototype) {
+      for (let i = 0; i < elem.children.length; i++) {
+        addTocNumber(elem.children[i], deep + (i + 1) + '.');
+      }
+    } else if (prop === HTMLLIElement.prototype) {
+      // 保存li元素
+      if (elem.children[0] && elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
+        lList.push(elem);
+      }
+      for (let i = 0; i < elem.children.length; i++) {
+        let cur = elem.children[i];
+        if (cur.__proto__ === HTMLAnchorElement.prototype) {
+          if (autoNumber) {
+            cur.text = deep + ' ' + cur.text;
+          }
+        } else if (cur.__proto__ === HTMLUListElement.prototype) {
+          addTocNumber(cur, deep);
+        }
+      }
+    }
+  }
+
+  function removeParentActiveClass() {
+    let parents = tocContent.querySelectorAll('.' + active)
+    parents.forEach(function (elem) {
+      elem.classList.remove(active);
+    });
+  }
+
+  function addActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.add(activeClass);
+    }
+  }
+
+  function removeActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.remove(activeClass);
+    }
+  }
+
+  function addActiveLiElemment(elem, parent) {
+    if (!elem || elem === parent) {
+      return;
+    } else {
+      if (elem.__proto__ === HTMLLIElement.prototype) {
+        elem.classList.add(active);
+      }
+      addActiveLiElemment(elem.parentElement, parent);
+    }
+  }
+
+  function showToc() {
+    if (tocWrapper) {
+      postBody = document.querySelector('#post_body');
+      for (let i = 0; i < postBody.children.length; i++) {
+        if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+          hList.push(postBody.children[i]);
+        }
+      }
+      if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+      } else if (tocWrapper.classList.contains('no_compress')) {
+        tocContent.classList.add('expanded');
+      } else {
+        if (hList.length > 10) {
+          active = 'active-hidden'
+          tocContent.classList.add('closed');
+        } else {
+          tocContent.classList.add('expanded');
+        }
+      }
+    }
+  }
+
+  (function () {
+    // 处理不是从#一级标题开始目录
+    if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
+      let con = tocContent.children[0].children[0];
+      tocContent.innerHTML = con.innerHTML;
+    }
+    let markdownItTOC = document.querySelector('.markdownIt-TOC');
+    let innerHeight = window.innerHeight;
+    markdownItTOC.style = `max-height: ${innerHeight - 80 > 0 ? innerHeight - 80 : innerHeight}px`
+    addTocNumber(tocContent, '');
+  })();
+
+  document.addEventListener('scroll', function (e) {
+    if (lList.length <= 0) {
+      return;
+    }
+    let scrollTop = document.scrollingElement.scrollTop + 10;
+    let dir;
+
+    if (lastTop - scrollTop > 0) {
+      dir = 'up';
+    } else {
+      dir = 'down';
+    }
+
+    lastTop = scrollTop;
+    if (scrollTop <= 0) {
+      if (lastIndex >= 0 && lastIndex < hList.length) {
+        lList[lastIndex].classList.remove(activeClass);
+      }
+      return;
+    }
+
+    let current = 0, hasFind = false;
+    for (let i = 0; i < hList.length; i++) {
+      if (hList[i].offsetTop > scrollTop) {
+        current = i;
+        hasFind = true;
+        break;
+      }
+    }
+    if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+      current = hList.length - 1;
+    } else {
+      current--;
+    }
+    if (dir === 'down') {
+      if (current > lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex)
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    } else {
+      if (current < lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex);
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    }
+  });
+
+
+  window.addEventListener('load', function () {
+    showToc();
+    document.querySelector('#sidebar').style = 'display: block;';
+    tocWrapper.classList.add('toc-active');
+    setTimeout(function () {
+      if ("createEvent" in document) {
+        let evt = document.createEvent("HTMLEvents");
+        evt.initEvent("scroll", false, true);
+        document.dispatchEvent(evt);
+      }
+      else {
+        document.fireEvent("scroll");
+      }
+    }, 500)
+  })
+
+</script>
+            </div>
           
         
       </div>
@@ -311,14 +502,14 @@
           <div class="section bg-color post post-page">
             <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://jorlken1.github.io/post/11-shi-tu-ceng-kuang-jia-de-fen-lei/"> 1.1 视图层框架的分类 </a>
+    <a class="post-title-link" href="https://jorlken1.github.io/post/guan-yu-ling-dao-fang-fa-de-ruo-gan-wen-ti/"> 关于领导方法的若干问题 </a>
   </h1>
   <div class="post-meta">
     
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2022-05-19 15:00:51">2022-05-19</span>
+      <span class="publish-time" data-t="2022-05-25 10:55:03">2022-05-25</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -326,9 +517,8 @@
       <i class="fa fa-folder-o"></i>
       <span class="pc-show language" data-lan="category-in">标签:</span>
        
-      <a href="https://jorlken1.github.io/tag/HMoRnyvaY/"> <span>Vue.js 的设计与实现总结</span> </a>、   
-      <a href="https://jorlken1.github.io/tag/browserSide /">
-        <span>前端</span>
+      <a href="https://jorlken1.github.io/tag/life/">
+        <span>生活</span>
       </a>
        
     </span>
@@ -346,7 +536,7 @@
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
       <span
-        >187<span class="pc-show language" data-lan="words"
+        >182<span class="pc-show language" data-lan="words"
           >字数</span
         ></span
       >
@@ -356,23 +546,20 @@
 </section>
 
             <div class="post-body next-md-body" id="post_body">
-              <ol>
-<li>命令式<br>
-用户通过发布一条条命令，完成特定的功能。命令式的一大特点为<code>关注功能</code>。</li>
-<li>声明式<br>
-用户通过直接阐述所需要生成的标签结果，即可完成特定功能。</li>
+              <h1 id="两个方法">两个方法</h1>
+<ol>
+<li>一般与个别相结合。</li>
+<li>领导与群众相结合。</li>
 </ol>
-<p>举例：<br>
-<code>我要生成一个有点击事件和文本&quot;hello world&quot;的div标签</code></p>
-<p>命令式框架需要进行以下编码：</p>
-<pre><code>const div = document.querySelect('#app') // 获取页面中id为app的div
-div.innerText =  'hello world' // 设置文本内容
-div.addEventlistener('click',()=&gt;{alert('ok')})// 绑定点击事件   
-</code></pre>
-<p>而声明式框架则仅仅需要进行以下编码：</p>
-<pre><code>&lt;div @click=&quot;()=&gt;{alert('ok')}&quot;&gt;hello world&lt;/div&gt;
-</code></pre>
-<p>Vue的内部实现是<strong>命令式</strong>的，而用户层则是<strong>声明式</strong>的。</p>
+<h1 id="普遍和一般的号召">普遍和一般的号召</h1>
+<p>从下级和别人员或事件获取具体经验，再向一切单位作指导。</p>
+<h1 id="领导骨干和广大群众相结合">领导骨干和广大群众相结合</h1>
+<p>需要培养团结一致，联系群众的经常健全的骨干。</p>
+<h1 id="从群众中来再到群众中去">从群众中来再到群众中去</h1>
+<p>收集群众的意见，经研究化为系统性的意见，再到群众中去宣传解释，考验意见是否正确，循环往复。</p>
+<h1 id="工作任务需要分工且统一">工作任务需要分工且统一</h1>
+<p>让领导和下级领导都负起责任。</p>
+<h1 id="抓住问题的主要矛盾的主要方面具体问题具体分析">抓住问题的主要矛盾的主要方面，具体问题具体分析</h1>
 
             </div>
             
@@ -385,7 +572,7 @@ div.addEventlistener('click',()=&gt;{alert('ok')})// 绑定点击事件
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://jorlken1.github.io/post/11-shi-tu-ceng-kuang-jia-de-fen-lei/" title="1.1 视图层框架的分类">https://jorlken1.github.io/post/11-shi-tu-ceng-kuang-jia-de-fen-lei/</a>
+      <a href="https://jorlken1.github.io/post/guan-yu-ling-dao-fang-fa-de-ruo-gan-wen-ti/" title="关于领导方法的若干问题">https://jorlken1.github.io/post/guan-yu-ling-dao-fang-fa-de-ruo-gan-wen-ti/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -394,23 +581,17 @@ div.addEventlistener('click',()=&gt;{alert('ok')})// 绑定点击事件
   </ul>
   <div class="tags">
     
-      <a href="https://jorlken1.github.io/tag/HMoRnyvaY/"># Vue.js 的设计与实现总结</a>
-    
-      <a href="https://jorlken1.github.io/tag/browserSide /"># 前端</a>
+      <a href="https://jorlken1.github.io/tag/life/"># 生活</a>
     
   </div>
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="1.2 性能与可维护性的平衡" href="https://jorlken1.github.io/post/12-xing-neng-yu-ke-wei-hu-xing-de-ping-heng/">1.2 性能与可维护性的平衡</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="1.2 性能与可维护性的平衡" href="https://jorlken1.github.io/post/12-xing-neng-yu-ke-wei-hu-xing-de-ping-heng/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="基于Vue的视频播放器（支持视频流、直播流）" href="https://jorlken1.github.io/post/Vue-Easy-Player/">基于Vue的视频播放器（支持视频流、直播流）</a>
-        <a class="nav-mobile-next" title="基于Vue的视频播放器（支持视频流、直播流）" href="https://jorlken1.github.io/post/Vue-Easy-Player/">下一篇</a>
+        <a class="nav-pc-next" title="1.4 运行时和编译时" href="https://jorlken1.github.io/post/14-yun-xing-shi-he-bian-yi-shi/">1.4 运行时和编译时</a>
+        <a class="nav-mobile-next" title="1.4 运行时和编译时" href="https://jorlken1.github.io/post/14-yun-xing-shi-he-bian-yi-shi/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
