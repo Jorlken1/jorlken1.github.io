@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://jorlken1.github.io</id>
     <title>jorlken Notes</title>
-    <updated>2022-05-25T03:08:46.750Z</updated>
+    <updated>2022-05-25T03:27:09.633Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://jorlken1.github.io"/>
     <link rel="self" href="https://jorlken1.github.io/atom.xml"/>
@@ -10,6 +10,28 @@
     <logo>https://jorlken1.github.io/images/avatar.png</logo>
     <icon>https://jorlken1.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, jorlken Notes</rights>
+    <entry>
+        <title type="html"><![CDATA[2.2 控制框架代码体积]]></title>
+        <id>https://jorlken1.github.io/post/22-kong-zhi-kuang-jia-dai-ma-ti-ji/</id>
+        <link href="https://jorlken1.github.io/post/22-kong-zhi-kuang-jia-dai-ma-ti-ji/">
+        </link>
+        <updated>2022-05-25T03:24:07.000Z</updated>
+        <content type="html"><![CDATA[<p>通过控制环境变量 <em>DEV</em> 可以在开发环境给开发者提供良好的开发体验的同时，不会增加生产环境的体积。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[2.1 提升用户的开发体验]]></title>
+        <id>https://jorlken1.github.io/post/21-ti-sheng-yong-hu-de-kai-fa-ti-yan/</id>
+        <link href="https://jorlken1.github.io/post/21-ti-sheng-yong-hu-de-kai-fa-ti-yan/">
+        </link>
+        <updated>2022-05-25T03:20:18.000Z</updated>
+        <content type="html"><![CDATA[<p>例：</p>
+<ol>
+<li>提供必要的警告信息</li>
+<li>编写自定义formatter去优化控制台输出</li>
+</ol>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[关于领导方法的若干问题]]></title>
         <id>https://jorlken1.github.io/post/guan-yu-ling-dao-fang-fa-de-ruo-gan-wen-ti/</id>
