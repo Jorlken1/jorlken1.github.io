@@ -9,7 +9,7 @@
 <meta name="description" content="勤学如春起之苗，不见其长，日有精进">
 <meta name="theme-color" content="#000">
 <title>jorlken Notes</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1653449216475">
+<link rel="shortcut icon" href="/favicon.ico?v=1654161228429">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -170,7 +170,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">9</span>
+        <span class="site-item-stat-count">11</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -233,6 +233,10 @@
           <small class="language" data-lan="tag">标签</small>
         </h2>
       </div>
+      
+      
+      
+      
       
       
       
@@ -1104,6 +1108,42 @@
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://jorlken1.github.io/post/24-kuang-jia-ying-gai-shu-chu-zen-me-yang-de-chan-wu/"" data-c="
+          &lt;p&gt;根据环境输出产物&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;HTML中直接用script标签引入使用&lt;br&gt;
+运用立即执行函数(IIFE)包裹，全局的Vue就可以使用了。&lt;br&gt;
+使用：在rollup.js中，通过配置format:iife,即可输出该形式资源。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;esm格式资源&lt;br&gt;
+用户用&lt;code&gt;&amp;lt;script type=&amp;quot;module&amp;quot; src=&amp;quot;/path/to/vue.esm-browser.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;&lt;/code&gt;引入&lt;br&gt;
+使用：配置format:esm。&lt;br&gt;
+由于配置环境变量的不同，vue.runtime.esm-bundler.js 为提供给webpack和roll等打包工具使用。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;cjs格式资源&lt;br&gt;
+node使用&lt;code&gt;const vue = require(&amp;quot;vue&amp;quot;)&lt;/code&gt; 引入，用于服务端渲染（ssr）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+">2.4 框架应该输出怎么样的产物</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://jorlken1.github.io/post/23-kuang-jia-yao-zuo-dao-liang-hao-de-tree-shaking/"" data-c="
+          &lt;h1 id=&#34;tree-shaking&#34;&gt;Tree-Shaking&lt;/h1&gt;
+&lt;p&gt;指的是消除永远不会执行的代码&lt;br&gt;
+注意：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;模块语法必须是ES Module&lt;/li&gt;
+&lt;li&gt;只会清除不对外部造成影响（副作用）的模块&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;如果确定函数不会造成影响，则可以注释代码告诉打包工具，可以放心对其清除。&lt;/p&gt;
+">2.3 框架要做到良好的tree-shaking</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://jorlken1.github.io/post/22-kong-zhi-kuang-jia-dai-ma-ti-ji/"" data-c="

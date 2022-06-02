@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://jorlken1.github.io</id>
     <title>jorlken Notes</title>
-    <updated>2022-05-25T03:27:09.633Z</updated>
+    <updated>2022-06-02T09:13:58.343Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://jorlken1.github.io"/>
     <link rel="self" href="https://jorlken1.github.io/atom.xml"/>
@@ -10,6 +10,48 @@
     <logo>https://jorlken1.github.io/images/avatar.png</logo>
     <icon>https://jorlken1.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, jorlken Notes</rights>
+    <entry>
+        <title type="html"><![CDATA[2.4 框架应该输出怎么样的产物]]></title>
+        <id>https://jorlken1.github.io/post/24-kuang-jia-ying-gai-shu-chu-zen-me-yang-de-chan-wu/</id>
+        <link href="https://jorlken1.github.io/post/24-kuang-jia-ying-gai-shu-chu-zen-me-yang-de-chan-wu/">
+        </link>
+        <updated>2022-06-02T08:56:39.000Z</updated>
+        <content type="html"><![CDATA[<p>根据环境输出产物</p>
+<ol>
+<li>
+<p>HTML中直接用script标签引入使用<br>
+运用立即执行函数(IIFE)包裹，全局的Vue就可以使用了。<br>
+使用：在rollup.js中，通过配置format:iife,即可输出该形式资源。</p>
+</li>
+<li>
+<p>esm格式资源<br>
+用户用<code>&lt;script type=&quot;module&quot; src=&quot;/path/to/vue.esm-browser.js&quot;&gt;&lt;/script&gt;</code>引入<br>
+使用：配置format:esm。<br>
+由于配置环境变量的不同，vue.runtime.esm-bundler.js 为提供给webpack和roll等打包工具使用。</p>
+</li>
+<li>
+<p>cjs格式资源<br>
+node使用<code>const vue = require(&quot;vue&quot;)</code> 引入，用于服务端渲染（ssr）。</p>
+</li>
+</ol>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[2.3 框架要做到良好的tree-shaking]]></title>
+        <id>https://jorlken1.github.io/post/23-kuang-jia-yao-zuo-dao-liang-hao-de-tree-shaking/</id>
+        <link href="https://jorlken1.github.io/post/23-kuang-jia-yao-zuo-dao-liang-hao-de-tree-shaking/">
+        </link>
+        <updated>2022-05-26T06:06:20.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="tree-shaking">Tree-Shaking</h1>
+<p>指的是消除永远不会执行的代码<br>
+注意：</p>
+<ol>
+<li>模块语法必须是ES Module</li>
+<li>只会清除不对外部造成影响（副作用）的模块</li>
+</ol>
+<p>如果确定函数不会造成影响，则可以注释代码告诉打包工具，可以放心对其清除。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[2.2 控制框架代码体积]]></title>
         <id>https://jorlken1.github.io/post/22-kong-zhi-kuang-jia-dai-ma-ti-ji/</id>
@@ -229,15 +271,6 @@ export default {
 <li><code>snapOutside</code> 外部快照回调, 参数: 快照 Base64 数据</li>
 <li><code>snapInside</code> 内部快照回调, 由控制栏快照按钮触发, 参数: 快照 Base64 数据</li>
 </ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[第一篇文章]]></title>
-        <id>https://jorlken1.github.io/post/di-yi-pian-wen-zhang/</id>
-        <link href="https://jorlken1.github.io/post/di-yi-pian-wen-zhang/">
-        </link>
-        <updated>2022-05-12T01:58:53.000Z</updated>
-        <content type="html"><![CDATA[<p>hello gridea ，成功完成个性化配置，开始编写。</p>
 ]]></content>
     </entry>
 </feed>

@@ -8,7 +8,7 @@
 <meta name="keywords" content="jorlken">
 <meta name="description" content="勤学如春起之苗，不见其长，日有精进">
 <meta name="theme-color" content="#000">
-<title>第一篇文章 | jorlken Notes</title>
+<title>2.4 框架应该输出怎么样的产物 | jorlken Notes</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1654161228429">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
@@ -41,8 +41,8 @@
 
 
 
-  <meta name="description" content="第一篇文章" />
-  <meta name="keywords" content="生活" />
+  <meta name="description" content="2.4 框架应该输出怎么样的产物" />
+  <meta name="keywords" content="" />
 </head>
 
 <body>
@@ -311,27 +311,16 @@
           <div class="section bg-color post post-page">
             <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://jorlken1.github.io/post/di-yi-pian-wen-zhang/"> 第一篇文章 </a>
+    <a class="post-title-link" href="https://jorlken1.github.io/post/24-kuang-jia-ying-gai-shu-chu-zen-me-yang-de-chan-wu/"> 2.4 框架应该输出怎么样的产物 </a>
   </h1>
   <div class="post-meta">
     
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2022-05-12 09:58:53">2022-05-12</span>
+      <span class="publish-time" data-t="2022-06-02 16:56:39">2022-06-02</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
-    
-    <span class="meta-item">
-      <i class="fa fa-folder-o"></i>
-      <span class="pc-show language" data-lan="category-in">标签:</span>
-       
-      <a href="https://jorlken1.github.io/tag/life/">
-        <span>生活</span>
-      </a>
-       
-    </span>
-    <span class="post-meta-divider">|</span>
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
@@ -345,7 +334,7 @@
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
       <span
-        >15<span class="pc-show language" data-lan="words"
+        >148<span class="pc-show language" data-lan="words"
           >字数</span
         ></span
       >
@@ -355,7 +344,24 @@
 </section>
 
             <div class="post-body next-md-body" id="post_body">
-              <p>hello gridea ，成功完成个性化配置，开始编写。</p>
+              <p>根据环境输出产物</p>
+<ol>
+<li>
+<p>HTML中直接用script标签引入使用<br>
+运用立即执行函数(IIFE)包裹，全局的Vue就可以使用了。<br>
+使用：在rollup.js中，通过配置format:iife,即可输出该形式资源。</p>
+</li>
+<li>
+<p>esm格式资源<br>
+用户用<code>&lt;script type=&quot;module&quot; src=&quot;/path/to/vue.esm-browser.js&quot;&gt;&lt;/script&gt;</code>引入<br>
+使用：配置format:esm。<br>
+由于配置环境变量的不同，vue.runtime.esm-bundler.js 为提供给webpack和roll等打包工具使用。</p>
+</li>
+<li>
+<p>cjs格式资源<br>
+node使用<code>const vue = require(&quot;vue&quot;)</code> 引入，用于服务端渲染（ssr）。</p>
+</li>
+</ol>
 
             </div>
             
@@ -368,7 +374,7 @@
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://jorlken1.github.io/post/di-yi-pian-wen-zhang/" title="第一篇文章">https://jorlken1.github.io/post/di-yi-pian-wen-zhang/</a>
+      <a href="https://jorlken1.github.io/post/24-kuang-jia-ying-gai-shu-chu-zen-me-yang-de-chan-wu/" title="2.4 框架应该输出怎么样的产物">https://jorlken1.github.io/post/24-kuang-jia-ying-gai-shu-chu-zen-me-yang-de-chan-wu/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -377,18 +383,16 @@
   </ul>
   <div class="tags">
     
-      <a href="https://jorlken1.github.io/tag/life/"># 生活</a>
-    
   </div>
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="基于Vue的视频播放器（支持视频流、直播流）" href="https://jorlken1.github.io/post/Vue-Easy-Player/">基于Vue的视频播放器（支持视频流、直播流）</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="基于Vue的视频播放器（支持视频流、直播流）" href="https://jorlken1.github.io/post/Vue-Easy-Player/">上一篇</a>
-      
     </div>
     <div class="nav-next">
+      
+        <a class="nav-pc-next" title="2.3 框架要做到良好的tree-shaking" href="https://jorlken1.github.io/post/23-kuang-jia-yao-zuo-dao-liang-hao-de-tree-shaking/">2.3 框架要做到良好的tree-shaking</a>
+        <a class="nav-mobile-next" title="2.3 框架要做到良好的tree-shaking" href="https://jorlken1.github.io/post/23-kuang-jia-yao-zuo-dao-liang-hao-de-tree-shaking/">下一篇</a>
+        <i class="fa fa-chevron-right"></i>
       
     </div>
   </div>
