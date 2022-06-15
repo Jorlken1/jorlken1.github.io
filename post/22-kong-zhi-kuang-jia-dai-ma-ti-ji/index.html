@@ -9,7 +9,7 @@
 <meta name="description" content="勤学如春起之苗，不见其长，日有精进">
 <meta name="theme-color" content="#000">
 <title>2.2 控制框架代码体积 | jorlken Notes</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1654831434333">
+<link rel="shortcut icon" href="/favicon.ico?v=1655284965135">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -187,7 +187,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">11</span>
+        <span class="site-item-stat-count">13</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -881,6 +881,41 @@
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://jorlken1.github.io/post/26-cuo-wu-chu-li/"" data-c="
+          &lt;h3 id=&#34;为什么需要错误处理&#34;&gt;为什么需要错误处理&lt;/h3&gt;
+&lt;p&gt;用户在调用框架的工具模块时报错，需要手动添加 &lt;code&gt;try{...}catch{...}&lt;/code&gt; 来捕获，会增加用户的使用负担。&lt;/p&gt;
+&lt;h3 id=&#34;如何完成错误处理&#34;&gt;如何完成错误处理&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;注册错误程序处理程序。&lt;/li&gt;
+&lt;li&gt;用户可以选择是否忽略报错。&lt;/li&gt;
+&lt;/ol&gt;
+">2.6 错误处理</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://jorlken1.github.io/post/25-te-xing-kai-guan/"" data-c="
+          &lt;h3 id=&#34;为什么需要特性开关&#34;&gt;为什么需要特性开关？&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;对于不用的特性可以使用tree-sharking机制使其不被包含在最终的资源里。&lt;/li&gt;
+&lt;li&gt;在框架升级或降级的时候可以对遗留api进行遗留或者去除&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;如何实现特性开关&#34;&gt;如何实现特性开关？&lt;/h3&gt;
+&lt;p&gt;利用 rollup.js 的预定义常量插件来实现&lt;/p&gt;
+&lt;p&gt;拿是否使用选项式api举例子：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// rollup.js 配置
+{
+    __FEATURE_OPTION_API__ : isBundlerESMBuild ? `__VUE_OPTIONS_API__` : true,
+}
+
+// Vue3 源码
+if(__FEATURE_OPTION_API__){
+    ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+">2.5 特性开关</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://jorlken1.github.io/post/24-kuang-jia-ying-gai-shu-chu-zen-me-yang-de-chan-wu/"" data-c="

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://jorlken1.github.io</id>
     <title>jorlken Notes</title>
-    <updated>2022-06-10T03:23:58.452Z</updated>
+    <updated>2022-06-15T09:24:03.202Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://jorlken1.github.io"/>
     <link rel="self" href="https://jorlken1.github.io/atom.xml"/>
@@ -10,6 +10,47 @@
     <logo>https://jorlken1.github.io/images/avatar.png</logo>
     <icon>https://jorlken1.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, jorlken Notes</rights>
+    <entry>
+        <title type="html"><![CDATA[2.6 错误处理]]></title>
+        <id>https://jorlken1.github.io/post/26-cuo-wu-chu-li/</id>
+        <link href="https://jorlken1.github.io/post/26-cuo-wu-chu-li/">
+        </link>
+        <updated>2022-06-15T08:41:49.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="为什么需要错误处理">为什么需要错误处理</h3>
+<p>用户在调用框架的工具模块时报错，需要手动添加 <code>try{...}catch{...}</code> 来捕获，会增加用户的使用负担。</p>
+<h3 id="如何完成错误处理">如何完成错误处理</h3>
+<ol>
+<li>注册错误程序处理程序。</li>
+<li>用户可以选择是否忽略报错。</li>
+</ol>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[2.5 特性开关]]></title>
+        <id>https://jorlken1.github.io/post/25-te-xing-kai-guan/</id>
+        <link href="https://jorlken1.github.io/post/25-te-xing-kai-guan/">
+        </link>
+        <updated>2022-06-15T08:22:40.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="为什么需要特性开关">为什么需要特性开关？</h3>
+<ol>
+<li>对于不用的特性可以使用tree-sharking机制使其不被包含在最终的资源里。</li>
+<li>在框架升级或降级的时候可以对遗留api进行遗留或者去除</li>
+</ol>
+<h3 id="如何实现特性开关">如何实现特性开关？</h3>
+<p>利用 rollup.js 的预定义常量插件来实现</p>
+<p>拿是否使用选项式api举例子：</p>
+<pre><code>// rollup.js 配置
+{
+    __FEATURE_OPTION_API__ : isBundlerESMBuild ? `__VUE_OPTIONS_API__` : true,
+}
+
+// Vue3 源码
+if(__FEATURE_OPTION_API__){
+    ...
+}
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[2.4 框架应该输出怎么样的产物]]></title>
         <id>https://jorlken1.github.io/post/24-kuang-jia-ying-gai-shu-chu-zen-me-yang-de-chan-wu/</id>
@@ -34,31 +75,6 @@
 node使用<code>const vue = require(&quot;vue&quot;)</code> 引入，用于服务端渲染（ssr）。</p>
 </li>
 </ol>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[2.3 框架要做到良好的tree-shaking]]></title>
-        <id>https://jorlken1.github.io/post/23-kuang-jia-yao-zuo-dao-liang-hao-de-tree-shaking/</id>
-        <link href="https://jorlken1.github.io/post/23-kuang-jia-yao-zuo-dao-liang-hao-de-tree-shaking/">
-        </link>
-        <updated>2022-05-26T06:06:20.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="tree-shaking">Tree-Shaking</h1>
-<p>指的是消除永远不会执行的代码<br>
-注意：</p>
-<ol>
-<li>模块语法必须是ES Module</li>
-<li>只会清除不对外部造成影响（副作用）的模块</li>
-</ol>
-<p>如果确定函数不会造成影响，则可以注释代码告诉打包工具，可以放心对其清除。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[2.2 控制框架代码体积]]></title>
-        <id>https://jorlken1.github.io/post/22-kong-zhi-kuang-jia-dai-ma-ti-ji/</id>
-        <link href="https://jorlken1.github.io/post/22-kong-zhi-kuang-jia-dai-ma-ti-ji/">
-        </link>
-        <updated>2022-05-25T03:24:07.000Z</updated>
-        <content type="html"><![CDATA[<p>通过控制环境变量 <em>DEV</em> 可以在开发环境给开发者提供良好的开发体验的同时，不会增加生产环境的体积。</p>
 ]]></content>
     </entry>
 </feed>
