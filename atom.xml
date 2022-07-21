@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://jorlken1.github.io</id>
     <title>jorlken Notes</title>
-    <updated>2022-06-15T09:24:03.202Z</updated>
+    <updated>2022-07-21T08:54:16.226Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://jorlken1.github.io"/>
     <link rel="self" href="https://jorlken1.github.io/atom.xml"/>
@@ -10,6 +10,79 @@
     <logo>https://jorlken1.github.io/images/avatar.png</logo>
     <icon>https://jorlken1.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, jorlken Notes</rights>
+    <entry>
+        <title type="html"><![CDATA[4.2 实现简单的响应式数据]]></title>
+        <id>https://jorlken1.github.io/post/42-shi-xian-xiang-ying-shi-shu-ju/</id>
+        <link href="https://jorlken1.github.io/post/42-shi-xian-xiang-ying-shi-shu-ju/">
+        </link>
+        <updated>2022-07-19T07:25:25.000Z</updated>
+        <content type="html"><![CDATA[<p>响应式系统要实现的是：另一群数据根据他们所依赖的响应式数据改变。</p>
+<p>举例：<br>
+设一个视图层的属性<code>innerText=1</code>,数据层的响应式属性<code>a=1</code>,innerText依赖于a,当a变为2时，视图层innerText的值也要跟着改变为2。<br>
+我们就直接想到，可以对a的属性变化进行拦截，用到ES6语法proxy来完成。</p>
+<pre><code>// 创建响应式数据a,视图层的属性innerText
+document.div.innerText = &quot;我还好&quot;
+const a = new Proxy({ value: &quot;我还好&quot; }, {
+  //当a改变时，a改变的行为会被中止，并触发set函数
+  set: function (obj, key, newVal) {
+    // 继续被中止的行为
+    obj[key] = newVal
+    // 令视图层属性 innerText = a ,我们设一个effect()来完成这件事
+    effect()
+    return true
+})
+</code></pre>
+<p>那问题来了，<code>effect()</code>怎么来的呢？</p>
+<p>我们可以想象每个<code>响应式属性a</code>有个桶，当页面初始化读取这个数据时，我们把<code>effect()</code>放进桶里，等改变它的时候，我们再取出来用。那么代码就变成了下面的样子。</p>
+<pre><code>document.div.innerText = &quot;我还好&quot;
+/// 创建一个不会重复的桶
+let buk = new Set()
+
+ // 我们的effect函数
+function effect() {
+  document.div.innerText = a.value
+}
+
+const a = new Proxy({ value: &quot;我还好&quot; }, {
+  get: function (obj, key) {
+    // 桶里塞入effect()
+    buk.add(effect)
+    return obj[key]
+  },
+  set: function (obj, key, newVal) {
+    obj[key] = newVal
+    // 从桶里取出的effect()
+    buk.forEach((fn) =&gt; fn())
+    return true
+  },
+})
+
+/*完成封装开始运行*/
+
+// 视图层获取其数据触发get将其副作用函数装进桶里
+effect()
+
+// 更改响应式数据 a 的值
+setTimeout(() =&gt; {
+  a.value = &quot;我不好&quot;
+  console.log(doc) // 控制台打印 &quot;我不好&quot;
+}, 1000)
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[4.1 副作用函数与响应式数据的概念]]></title>
+        <id>https://jorlken1.github.io/post/41-fu-zuo-yong-han-shu-yu-xiang-ying-shi-shu-ju-de-gai-nian/</id>
+        <link href="https://jorlken1.github.io/post/41-fu-zuo-yong-han-shu-yu-xiang-ying-shi-shu-ju-de-gai-nian/">
+        </link>
+        <updated>2022-07-19T02:04:29.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="副作用函数">副作用函数</h2>
+<p>副作用函数又称之为<code>非纯函数</code>。<br>
+如果一个函数通过<code>参数</code>和<code>返回值</code>以外的渠道，从外界获取数据，或者向外部输出数据，那么，该函数就叫作<code>非纯函数</code>，反之则为纯函数。</p>
+<h2 id="响应式数据">响应式数据</h2>
+<p>在Vue中，当其改变时会相应触发视图层的变化，则称其为响应式数据。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[2.6 错误处理]]></title>
         <id>https://jorlken1.github.io/post/26-cuo-wu-chu-li/</id>
@@ -22,58 +95,6 @@
 <ol>
 <li>注册错误程序处理程序。</li>
 <li>用户可以选择是否忽略报错。</li>
-</ol>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[2.5 特性开关]]></title>
-        <id>https://jorlken1.github.io/post/25-te-xing-kai-guan/</id>
-        <link href="https://jorlken1.github.io/post/25-te-xing-kai-guan/">
-        </link>
-        <updated>2022-06-15T08:22:40.000Z</updated>
-        <content type="html"><![CDATA[<h3 id="为什么需要特性开关">为什么需要特性开关？</h3>
-<ol>
-<li>对于不用的特性可以使用tree-sharking机制使其不被包含在最终的资源里。</li>
-<li>在框架升级或降级的时候可以对遗留api进行遗留或者去除</li>
-</ol>
-<h3 id="如何实现特性开关">如何实现特性开关？</h3>
-<p>利用 rollup.js 的预定义常量插件来实现</p>
-<p>拿是否使用选项式api举例子：</p>
-<pre><code>// rollup.js 配置
-{
-    __FEATURE_OPTION_API__ : isBundlerESMBuild ? `__VUE_OPTIONS_API__` : true,
-}
-
-// Vue3 源码
-if(__FEATURE_OPTION_API__){
-    ...
-}
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[2.4 框架应该输出怎么样的产物]]></title>
-        <id>https://jorlken1.github.io/post/24-kuang-jia-ying-gai-shu-chu-zen-me-yang-de-chan-wu/</id>
-        <link href="https://jorlken1.github.io/post/24-kuang-jia-ying-gai-shu-chu-zen-me-yang-de-chan-wu/">
-        </link>
-        <updated>2022-06-02T08:56:39.000Z</updated>
-        <content type="html"><![CDATA[<p>根据环境输出产物</p>
-<ol>
-<li>
-<p>HTML中直接用script标签引入使用<br>
-运用立即执行函数(IIFE)包裹，全局的Vue就可以使用了。<br>
-使用：在rollup.js中，通过配置format:iife,即可输出该形式资源。</p>
-</li>
-<li>
-<p>esm格式资源<br>
-用户用<code>&lt;script type=&quot;module&quot; src=&quot;/path/to/vue.esm-browser.js&quot;&gt;&lt;/script&gt;</code>引入<br>
-使用：配置format:esm。<br>
-由于配置环境变量的不同，vue.runtime.esm-bundler.js 为提供给webpack和roll等打包工具使用。</p>
-</li>
-<li>
-<p>cjs格式资源<br>
-node使用<code>const vue = require(&quot;vue&quot;)</code> 引入，用于服务端渲染（ssr）。</p>
-</li>
 </ol>
 ]]></content>
     </entry>

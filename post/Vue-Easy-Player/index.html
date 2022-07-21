@@ -9,7 +9,7 @@
 <meta name="description" content="勤学如春起之苗，不见其长，日有精进">
 <meta name="theme-color" content="#000">
 <title>基于Vue的视频播放器（支持视频流、直播流） | jorlken Notes</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1655284965135">
+<link rel="shortcut icon" href="/favicon.ico?v=1658393652026">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -188,7 +188,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">13</span>
+        <span class="site-item-stat-count">15</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -1172,6 +1172,73 @@ export default {
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://jorlken1.github.io/post/42-shi-xian-xiang-ying-shi-shu-ju/"" data-c="
+          &lt;p&gt;响应式系统要实现的是：另一群数据根据他们所依赖的响应式数据改变。&lt;/p&gt;
+&lt;p&gt;举例：&lt;br&gt;
+设一个视图层的属性&lt;code&gt;innerText=1&lt;/code&gt;,数据层的响应式属性&lt;code&gt;a=1&lt;/code&gt;,innerText依赖于a,当a变为2时，视图层innerText的值也要跟着改变为2。&lt;br&gt;
+我们就直接想到，可以对a的属性变化进行拦截，用到ES6语法proxy来完成。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// 创建响应式数据a,视图层的属性innerText
+document.div.innerText = &amp;quot;我还好&amp;quot;
+const a = new Proxy({ value: &amp;quot;我还好&amp;quot; }, {
+  //当a改变时，a改变的行为会被中止，并触发set函数
+  set: function (obj, key, newVal) {
+    // 继续被中止的行为
+    obj[key] = newVal
+    // 令视图层属性 innerText = a ,我们设一个effect()来完成这件事
+    effect()
+    return true
+})
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;那问题来了，&lt;code&gt;effect()&lt;/code&gt;怎么来的呢？&lt;/p&gt;
+&lt;p&gt;我们可以想象每个&lt;code&gt;响应式属性a&lt;/code&gt;有个桶，当页面初始化读取这个数据时，我们把&lt;code&gt;effect()&lt;/code&gt;放进桶里，等改变它的时候，我们再取出来用。那么代码就变成了下面的样子。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;document.div.innerText = &amp;quot;我还好&amp;quot;
+/// 创建一个不会重复的桶
+let buk = new Set()
+
+ // 我们的effect函数
+function effect() {
+  document.div.innerText = a.value
+}
+
+const a = new Proxy({ value: &amp;quot;我还好&amp;quot; }, {
+  get: function (obj, key) {
+    // 桶里塞入effect()
+    buk.add(effect)
+    return obj[key]
+  },
+  set: function (obj, key, newVal) {
+    obj[key] = newVal
+    // 从桶里取出的effect()
+    buk.forEach((fn) =&amp;gt; fn())
+    return true
+  },
+})
+
+/*完成封装开始运行*/
+
+// 视图层获取其数据触发get将其副作用函数装进桶里
+effect()
+
+// 更改响应式数据 a 的值
+setTimeout(() =&amp;gt; {
+  a.value = &amp;quot;我不好&amp;quot;
+  console.log(doc) // 控制台打印 &amp;quot;我不好&amp;quot;
+}, 1000)
+&lt;/code&gt;&lt;/pre&gt;
+">4.2 实现简单的响应式数据</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://jorlken1.github.io/post/41-fu-zuo-yong-han-shu-yu-xiang-ying-shi-shu-ju-de-gai-nian/"" data-c="
+          &lt;h2 id=&#34;副作用函数&#34;&gt;副作用函数&lt;/h2&gt;
+&lt;p&gt;副作用函数又称之为&lt;code&gt;非纯函数&lt;/code&gt;。&lt;br&gt;
+如果一个函数通过&lt;code&gt;参数&lt;/code&gt;和&lt;code&gt;返回值&lt;/code&gt;以外的渠道，从外界获取数据，或者向外部输出数据，那么，该函数就叫作&lt;code&gt;非纯函数&lt;/code&gt;，反之则为纯函数。&lt;/p&gt;
+&lt;h2 id=&#34;响应式数据&#34;&gt;响应式数据&lt;/h2&gt;
+&lt;p&gt;在Vue中，当其改变时会相应触发视图层的变化，则称其为响应式数据。&lt;/p&gt;
+">4.1 副作用函数与响应式数据的概念</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://jorlken1.github.io/post/26-cuo-wu-chu-li/"" data-c="
