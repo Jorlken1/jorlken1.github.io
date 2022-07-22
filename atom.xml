@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://jorlken1.github.io</id>
     <title>jorlken Notes</title>
-    <updated>2022-07-22T01:00:35.938Z</updated>
+    <updated>2022-07-22T01:26:56.564Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://jorlken1.github.io"/>
     <link rel="self" href="https://jorlken1.github.io/atom.xml"/>
@@ -11,7 +11,7 @@
     <icon>https://jorlken1.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, jorlken Notes</rights>
     <entry>
-        <title type="html"><![CDATA[4.2 实现简单的响应式数据]]></title>
+        <title type="html"><![CDATA[实现简单的响应式数据]]></title>
         <id>https://jorlken1.github.io/post/42-shi-xian-xiang-ying-shi-shu-ju/</id>
         <link href="https://jorlken1.github.io/post/42-shi-xian-xiang-ying-shi-shu-ju/">
         </link>
@@ -71,7 +71,7 @@ setTimeout(() =&gt; {
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[4.1 副作用函数与响应式数据的概念]]></title>
+        <title type="html"><![CDATA[副作用函数与响应式数据的概念]]></title>
         <id>https://jorlken1.github.io/post/41-fu-zuo-yong-han-shu-yu-xiang-ying-shi-shu-ju-de-gai-nian/</id>
         <link href="https://jorlken1.github.io/post/41-fu-zuo-yong-han-shu-yu-xiang-ying-shi-shu-ju-de-gai-nian/">
         </link>
@@ -84,7 +84,7 @@ setTimeout(() =&gt; {
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[2.6 错误处理]]></title>
+        <title type="html"><![CDATA[错误处理]]></title>
         <id>https://jorlken1.github.io/post/26-cuo-wu-chu-li/</id>
         <link href="https://jorlken1.github.io/post/26-cuo-wu-chu-li/">
         </link>
